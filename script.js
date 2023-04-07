@@ -9,15 +9,15 @@ function printCustomer() {
                 "        <th>FirstName</th>\n" +
                 "        <th>LastName</th>\n" +
                 "        <th>Delete</th>\n" +
+                "        <th>Update</th>\n" +
                 "    </tr>";
             data.forEach(function (customer){
                 content+=
                     "<tr>" +
                     "    <td>"+customer.firstName+"</td>" +
                     "    <td>"+customer.lastName+"</td>" +
-                    "    <td><button onclick='deleteCustomer("
-                    +customer.id+
-                    ")'>DeleteCustomer</button></td>" +
+                    "    <td><button onclick='deleteCustomer(" +customer.id+ ")'>DeleteCustomer</button></td>" +
+                    "    <td><button onclick='saveCustomer(" +customer.id+ ")'>SaveCustomer</button></td>" +
                     "</tr>"
             })
             document.getElementById("table").innerHTML=content
@@ -31,10 +31,11 @@ function deleteCustomer(id){
         success:printCustomer
     })
 }
-function createCustomer(){
+function saveCustomer(id){
     let firstName= document.getElementById("firstName").value;
     let lastName= document.getElementById("lastName").value;
     let newUser={
+        id:id,
         firstName:firstName,
         lastName:lastName
     }
